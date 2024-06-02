@@ -7,9 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{392ECA3E-770
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OScience.MaterialsProject", "src\OScience.MaterialsProject.csproj", "{A6F5FECC-2232-41DD-ABEA-C3B6C8FF7E67}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "test", "..\test\test.csproj", "{D80728AC-E45A-492F-9CEA-03DA513C3B8D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OScience.Common", "OScience.Common\OScience.Common.csproj", "{3CFBF9DB-1A82-4015-A8E1-5341F95D1433}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OScience.Common", "src\OScience.Common\OScience.Common.csproj", "{3CFBF9DB-1A82-4015-A8E1-5341F95D1433}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +19,6 @@ Global
 		{A6F5FECC-2232-41DD-ABEA-C3B6C8FF7E67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6F5FECC-2232-41DD-ABEA-C3B6C8FF7E67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6F5FECC-2232-41DD-ABEA-C3B6C8FF7E67}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D80728AC-E45A-492F-9CEA-03DA513C3B8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D80728AC-E45A-492F-9CEA-03DA513C3B8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D80728AC-E45A-492F-9CEA-03DA513C3B8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D80728AC-E45A-492F-9CEA-03DA513C3B8D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3CFBF9DB-1A82-4015-A8E1-5341F95D1433}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3CFBF9DB-1A82-4015-A8E1-5341F95D1433}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CFBF9DB-1A82-4015-A8E1-5341F95D1433}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -35,7 +29,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A6F5FECC-2232-41DD-ABEA-C3B6C8FF7E67} = {392ECA3E-770A-4080-AAFD-704EE83A9A1F}
-		{D80728AC-E45A-492F-9CEA-03DA513C3B8D} = {392ECA3E-770A-4080-AAFD-704EE83A9A1F}
 		{3CFBF9DB-1A82-4015-A8E1-5341F95D1433} = {392ECA3E-770A-4080-AAFD-704EE83A9A1F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
