@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OScience.Common\OScience.Common.csproj" />
+    <Folder Include="RequestQueries\Core\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="RequestQueries\Core\" />
+    <ProjectReference Include="OScience.Common\OScience.Common.csproj" />
   </ItemGroup>
 
 </Project>
