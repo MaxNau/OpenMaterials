@@ -5,7 +5,7 @@ VisualStudioVersion = 17.9.34714.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{392ECA3E-770A-4080-AAFD-704EE83A9A1F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OScience.MaterialsProject", "src\OScience.MaterialsProject.csproj", "{A6F5FECC-2232-41DD-ABEA-C3B6C8FF7E67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaterialsProject", "src\MaterialsProject\MaterialsProject.csproj", "{A6F5FECC-2232-41DD-ABEA-C3B6C8FF7E67}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OScience.Common", "src\OScience.Common\OScience.Common.csproj", "{3CFBF9DB-1A82-4015-A8E1-5341F95D1433}"
 EndProject
