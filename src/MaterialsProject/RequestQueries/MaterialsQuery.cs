@@ -1,4 +1,5 @@
-﻿using OScience.Common.RequestData;
+﻿using MaterialsProject.Constants;
+using OScience.Common.RequestData;
 using OScience.MaterialsProject.RequestQueries;
 
 namespace OScience.MaterialsProject.RequestParameters
@@ -23,26 +24,35 @@ namespace OScience.MaterialsProject.RequestParameters
             DensityAtomic = densityAtomic ?? new DensityAtomicQuery();
         }
 
-        [QueryParameter("material_ids")]
+        [QueryParameter(StringLiterals.MaterialIds)]
         public string MaterialIds { get; }
         public string Formula { get; }
         public string Chemsys { get; }
-        [QueryParameter("task_ids")]
+
+        [QueryParameter(StringLiterals.TaskIds)]
         public string TaskIds { get; }
-        [QueryParameter("crystal_system")]
+        
+        [QueryParameter(StringLiterals.CrystalSystem)]
         public string CrystalSystem { get; }
-        [QueryParameter("spacegroup_number")]
+        
+        [QueryParameter(StringLiterals.SpacegroupNumber)]
         public int SpaceGroupNumber { get; }
-        [QueryParameter("spacegroup_symbol")]
+        
+        [QueryParameter(StringLiterals.SpacegroupSymbol)]
         public string SpaceGroupSymbol { get; }
+        
         public bool Deprecated { get; }
-        [QueryParameter("nsites")]
+        
+        [QueryParameter(StringLiterals.Nsites)]
         public SitesQuery Sites { get; }
-        [QueryParameter("nelements")]
+        
+        [QueryParameter(StringLiterals.Nelements)]
         public ElementsQuery Elements { get; }
-        [QueryParameter("density")]
+        
+        [QueryParameter(StringLiterals.Density)]
         public DensityQuery Density { get; }
-        [QueryParameter("density_atomic")]
+        
+        [QueryParameter(StringLiterals.DensityAtomic)]
         public DensityAtomicQuery DensityAtomic { get; }
     }
 }

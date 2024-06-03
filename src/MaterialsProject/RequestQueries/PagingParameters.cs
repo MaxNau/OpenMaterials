@@ -1,4 +1,5 @@
-﻿using OScience.Common.RequestData;
+﻿using MaterialsProject.Constants;
+using OScience.Common.RequestData;
 
 namespace OScience.MaterialsProject.RequestParameters
 {
@@ -12,16 +13,16 @@ namespace OScience.MaterialsProject.RequestParameters
             Limit = limit;
         }
 
-        [QueryParameter("_page")]
+        [QueryParameter(StringLiterals.Page)]
         public int? Page { get; }
 
-        [QueryParameter("_per_page")]
+        [QueryParameter(StringLiterals.PerPage)]
         public int? PerPage { get; }
 
-        [QueryParameter("_skip")]
+        [QueryParameter(StringLiterals.Skip)]
         public int? Skip { get; }
 
-        [QueryParameter("_limit")]
+        [QueryParameter(StringLiterals.Limit)]
         public int? Limit { get; }
     }
 }

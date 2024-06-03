@@ -1,12 +1,13 @@
-﻿using OScience.Common.RequestData;
+﻿using MaterialsProject.Constants;
+using OScience.Common.RequestData;
 
 namespace OScience.MaterialsProject.RequestQueries.Clauses
 {
     internal interface IEqualsQuery
     {
-        [QueryParameter("")]
+        [QueryParameter(StringLiterals.Empty)]
         int? Equal { get; }
-        [QueryParameter("not_eq")]
+        [QueryParameter(StringLiterals.NotEquals)]
         int? NotEqual { get; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using OScience.Common.RequestData;
+﻿using MaterialsProject.Constants;
+using OScience.Common.RequestData;
 using OScience.MaterialsProject.RequestQueries.Clauses;
 
 namespace OScience.MaterialsProject.RequestQueries
@@ -20,7 +21,8 @@ namespace OScience.MaterialsProject.RequestQueries
         }
 
         public string Elements { get; }
-        [QueryParameter("exclude_elements")]
+
+        [QueryParameter(StringLiterals.ExcludeElements)]
         public string ExcludeElements { get; }
 
         public int? Max { get; }

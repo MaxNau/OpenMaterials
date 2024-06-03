@@ -1,12 +1,13 @@
-﻿using OScience.Common.RequestData;
+﻿using MaterialsProject.Constants;
+using OScience.Common.RequestData;
 
 namespace OScience.MaterialsProject.RequestQueries.Clauses
 {
     internal interface IInQuery
     {
-        [QueryParameter("eq_any")]
+        [QueryParameter(StringLiterals.EqualsAny)]
         string In { get; }
-        [QueryParameter("neq_any")]
+        [QueryParameter(StringLiterals.NotEqualsAny)]
         string NotIn { get; }
     }
 }
