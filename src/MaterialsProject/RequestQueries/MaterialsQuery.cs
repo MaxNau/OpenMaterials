@@ -36,12 +36,12 @@ namespace OScience.MaterialsProject.RequestParameters
         public string CrystalSystem { get; }
         
         [QueryParameter(StringLiterals.SpacegroupNumber)]
-        public int SpaceGroupNumber { get; }
+        public int? SpaceGroupNumber { get; }
         
         [QueryParameter(StringLiterals.SpacegroupSymbol)]
         public string SpaceGroupSymbol { get; }
         
-        public bool Deprecated { get; }
+        public bool? Deprecated { get; }
         
         [QueryParameter(StringLiterals.Nsites)]
         public SitesQuery Sites { get; }

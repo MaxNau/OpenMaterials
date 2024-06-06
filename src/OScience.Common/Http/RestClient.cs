@@ -28,8 +28,7 @@ namespace OScience.Common.Http
 
         async Task<T> IRestClient.GetByQuery<T, QueryParam, PagingQueryParam>(string requestUri, QueryParam queryString, PagingQueryParam pagingQuery, string mimeType)
         {
-            await GetByQueryInternal<T, QueryParam, PagingQueryParam>(requestUri, mimeType, queryString, pagingQuery);
-            return default;
+            return await GetByQueryInternal<T, QueryParam, PagingQueryParam>(requestUri, mimeType, queryString, pagingQuery).ConfigureAwait(false);
         }
 
         internal async Task PostAsync<T>(string requestUri, RequestBody<T> body)
@@ -60,9 +59,10 @@ namespace OScience.Common.Http
 
             var serializer = _serializerFactory.Create(mimeType);
             var response = await _client.GetAsync(builder.Uri).ConfigureAwait(false);
-            var streamResult = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-
-            return default;
+            using (var streamResult = await response.Content.ReadAsStreamAsync().ConfigureAwait(false))
+            {
+                return await serializer.DeserializeAsync<T>(streamResult).ConfigureAwait(false);
+            }
         }
     }
 }
