@@ -1,8 +1,8 @@
-﻿using OScience.Common.Extensions;
+﻿using OScience.Common.Cache;
+using OScience.Common.Extensions;
 using OScience.Common.RequestData;
 using OScience.Common.Serialization;
 using System;
-using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -12,10 +12,23 @@ namespace OScience.Common.Http
     {
         private readonly HttpClient _client;
         private readonly ISerializerFactory _serializerFactory;
+        private IToStringCallCache<IQueryStringParameters> _toStringCallCache;
         protected RestClient(HttpClient client, ISerializerFactory serializerFactory)
         {
             _client = client ?? throw new ArgumentNullException(nameof(client));
             _serializerFactory = serializerFactory ?? throw new ArgumentNullException(nameof(serializerFactory));
+        }
+
+        internal RestClient(HttpClient client, ISerializerFactory serializerFactory, IToStringCallCache<IQueryStringParameters> toStringCallCache)
+        {
+            _client = client ?? throw new ArgumentNullException(nameof(client));
+            _serializerFactory = serializerFactory ?? throw new ArgumentNullException(nameof(serializerFactory));
+            _toStringCallCache = toStringCallCache ?? throw new ArgumentNullException(nameof(toStringCallCache));
+        }
+
+        internal void SetCache(IToStringCallCache<IQueryStringParameters> toStringCallCache)
+        {
+            _toStringCallCache = toStringCallCache ?? throw new ArgumentNullException(nameof(toStringCallCache));
         }
 
         async Task<T> IRestClient.GetAsync<T>(string requestUri, string mimeType)
@@ -45,8 +58,8 @@ namespace OScience.Common.Http
             where QueryParam : IQueryStringParameters
             where PagingQueryParam: IQueryStringParameters
         {
-            var pagingQueryString = pagingQuery.ToQueryString<PagingQueryParam>();
-            var queryString = query.ToQueryString<QueryParam>();
+            var pagingQueryString = pagingQuery.ToQueryString<PagingQueryParam>(_toStringCallCache);
+            var queryString = query.ToQueryString<QueryParam>(_toStringCallCache);
 
             var builder = new UriBuilder(_client.BaseAddress);
 

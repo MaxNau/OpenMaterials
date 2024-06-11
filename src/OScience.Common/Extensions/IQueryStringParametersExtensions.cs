@@ -8,14 +8,14 @@ namespace OScience.Common.Extensions
     internal static class IQueryStringParametersExtensions
     {
         private static readonly string ParameterSeparator = "&";
-        internal static string ToQueryString<T>(this IQueryStringParameters parameter) where T : IQueryStringParameters
+        internal static string ToQueryString<T>(this IQueryStringParameters parameter, IToStringCallCache<IQueryStringParameters> toStringCallCache) where T : IQueryStringParameters
         {
-            return string.Join(ParameterSeparator, BuildQueryParameters<T>(parameter));
+            return string.Join(ParameterSeparator, BuildQueryParameters<T>(parameter, toStringCallCache));
         }
 
-        private static IEnumerable<string> BuildQueryParameters<T>(IQueryStringParameters obj) where T : IQueryStringParameters
+        private static IEnumerable<string> BuildQueryParameters<T>(IQueryStringParameters obj, IToStringCallCache<IQueryStringParameters> toStringCallCache) where T : IQueryStringParameters
         {
-            foreach ((string parameterName, Func<IQueryStringParameters, string> parameterValueFunc) in TypePropertiesToStringCallCache.Get<T>())
+            foreach ((string parameterName, Func<IQueryStringParameters, string> parameterValueFunc) in toStringCallCache.Get<T>())
             {
                 string parameterValue = parameterValueFunc(obj);
                 if (string.IsNullOrWhiteSpace(parameterValue))

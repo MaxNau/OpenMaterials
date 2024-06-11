@@ -7,29 +7,30 @@ using System.Reflection;
 
 namespace OScience.Common.Cache
 {
-    internal static class TypePropertiesToStringCallCache
+    internal sealed class TypePropertiesToStringCallCache<T> : IPrecompiledCache, IToStringCallCache<T>
     {
-        private static readonly Dictionary<string, List<Tuple<string, Func<IQueryStringParameters, string>>>> _queryParametersCache = new Dictionary<string, List<Tuple<string, Func<IQueryStringParameters, string>>>>();
+        private readonly Dictionary<string, List<Tuple<string, Func<T, string>>>> _queryParametersCache = new Dictionary<string, List<Tuple<string, Func<T, string>>>>();
 
-        internal static List<Tuple<string, Func<IQueryStringParameters, string>>> Get<T>() where T : IQueryStringParameters
+
+        List<Tuple<string, Func<T, string>>> IToStringCallCache<T>.Get<CachedType>()
         {
-            return _queryParametersCache[typeof(T).Name];
+            return _queryParametersCache[typeof(CachedType).Name];
         }
 
-        internal static void Precompile(Assembly assembly)
+        void IPrecompiledCache.Precompile(Assembly assembly)
         {
             if (_queryParametersCache.Count > 0)
             {
                 return;
             }
 
-            var queryStringParametersInterface = typeof(IQueryStringParameters);
+            var queryStringParametersInterface = typeof(T);
             var queryParameters = assembly.GetTypes()
                 .Where(type => queryStringParametersInterface.IsAssignableFrom(type));
 
             foreach (var queryParameter in queryParameters)
             {
-                _queryParametersCache.Add(queryParameter.Name, new List<Tuple<string, Func<IQueryStringParameters, string>>>());
+                _queryParametersCache.Add(queryParameter.Name, new List<Tuple<string, Func<T, string>>>());
 
                 foreach (var propertyInfo in queryParameter.GetProperties())
                 {
@@ -44,7 +45,7 @@ namespace OScience.Common.Cache
 
                             var queryParameterAttribute = interfacesProperty.GetCustomAttribute<QueryParameterAttribute>();
                             _queryParametersCache[queryParameter.Name].Add(
-                                new Tuple<string, Func<IQueryStringParameters, string>>(
+                                new Tuple<string, Func<T, string>>(
                                     BuildParameterName(interfacesProperty, parentParameterName), toStringPrecompiled));
                         }
                     }
@@ -54,19 +55,19 @@ namespace OScience.Common.Cache
 
                         var queryParameterAttribute = propertyInfo.GetCustomAttribute<QueryParameterAttribute>();
                         _queryParametersCache[queryParameter.Name].Add(
-                            new Tuple<string, Func<IQueryStringParameters, string>>(
+                            new Tuple<string, Func<T, string>>(
                                 BuildParameterName(propertyInfo), toStringPrecompiled));
                     }
                 }
             }
         }
 
-        private static bool IsComplexType(Type type)
+        private bool IsComplexType(Type type)
         {
             return type.IsClass && type != typeof(string);
         }
 
-        private static string BuildParameterName(PropertyInfo propertyInfo, string parentParameterName)
+        private string BuildParameterName(PropertyInfo propertyInfo, string parentParameterName)
         {
             var queryParameterAttribute = propertyInfo.GetCustomAttribute<QueryParameterAttribute>();
 
@@ -86,9 +87,9 @@ namespace OScience.Common.Cache
                             propertyInfo.Name.ToLower();
         }
 
-        private static Func<IQueryStringParameters, string> BuildToStringPrecompiledLambda(PropertyInfo propertyInfo, PropertyInfo parentPropertyInfo = null)
+        private Func<T, string> BuildToStringPrecompiledLambda(PropertyInfo propertyInfo, PropertyInfo parentPropertyInfo = null)
         {
-            var objParameterExpr = Expression.Parameter(typeof(IQueryStringParameters));
+            var objParameterExpr = Expression.Parameter(typeof(T));
             var instanceExpr = Expression.TypeAs(objParameterExpr, parentPropertyInfo == null ? propertyInfo.DeclaringType : parentPropertyInfo.DeclaringType);
             var propertyExpr = parentPropertyInfo == null ?
                 Expression.Property(instanceExpr, propertyInfo) :
@@ -104,7 +105,7 @@ namespace OScience.Common.Cache
             {
                 toStringMethodCallExpression = Expression.Call(propertyExpr, toStringMethodInfo);
             }
-            return Expression.Lambda<Func<IQueryStringParameters, string>>(toStringMethodCallExpression, objParameterExpr).Compile();
+            return Expression.Lambda<Func<T, string>>(toStringMethodCallExpression, objParameterExpr).Compile();
         }
     }
 }

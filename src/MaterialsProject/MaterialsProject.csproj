@@ -1,10 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>Materials Project</Title>
   </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="MaterialsProject.DependencyInjection.Extensions" PublicKey="" />
+  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="RequestQueries\Core\" />
