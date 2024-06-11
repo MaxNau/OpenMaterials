@@ -43,12 +43,12 @@ namespace MaterialsProject.DependencyInjection.Extensions
                 }
             }
 
-#if NET5_0_OR_GREATER
+#if NET5_0_OR_GREATER || NETCOREAPP2_1_OR_GREATER
             var client = new HttpClient(
                 new SocketsHttpHandler
                     {
                         PooledConnectionLifetime = TimeSpan.FromMinutes(pooledConnectionLifetimeInMinutes <= 0 ? DefaultPooledConnectionLifetimeInMinutes : pooledConnectionLifetimeInMinutes)
-                    })
+                    }, false)
                 {
                     BaseAddress = new Uri(apiUrl)
                 };
