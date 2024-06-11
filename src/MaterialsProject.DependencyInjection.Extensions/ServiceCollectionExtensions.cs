@@ -5,8 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using OScience.MaterialsProject;
 using System;
 using System.Net.Http;
-using System.Threading;
-using System.Xml.Linq;
 
 namespace MaterialsProject.DependencyInjection.Extensions
 {
@@ -37,6 +35,7 @@ namespace MaterialsProject.DependencyInjection.Extensions
                 var materialsProjectConfig = configuration
                     .GetSection(MaterialsProjectConfiguration.MaterialsProjectConfigurationSectionName)
                     .Get<MaterialsProjectConfiguration>();
+                
                 if (materialsProjectConfig != null)
                 {
                     apiKey = materialsProjectConfig.ApiKey;
