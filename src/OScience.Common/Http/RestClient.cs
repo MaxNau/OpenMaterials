@@ -12,7 +12,8 @@ namespace OScience.Common.Http
     {
         private readonly HttpClient _client;
         private readonly ISerializerFactory _serializerFactory;
-        private IToStringCallCache<IQueryStringParameters> _toStringCallCache;
+        private IToStringCallCache<IQueryStringParameters> _queryStringParametersToStringCallCache;
+        private IToStringCallCache<IFieldFilter> _fieldFilterToStringCallCache;
         protected RestClient(HttpClient client, ISerializerFactory serializerFactory)
         {
             _client = client ?? throw new ArgumentNullException(nameof(client));
@@ -23,12 +24,15 @@ namespace OScience.Common.Http
         {
             _client = client ?? throw new ArgumentNullException(nameof(client));
             _serializerFactory = serializerFactory ?? throw new ArgumentNullException(nameof(serializerFactory));
-            _toStringCallCache = toStringCallCache ?? throw new ArgumentNullException(nameof(toStringCallCache));
+            _queryStringParametersToStringCallCache = toStringCallCache ?? throw new ArgumentNullException(nameof(toStringCallCache));
         }
 
-        internal void SetCache(IToStringCallCache<IQueryStringParameters> toStringCallCache)
+        internal void SetCache(
+            IToStringCallCache<IQueryStringParameters> queryStringParametersToStringCallCache,
+            IToStringCallCache<IFieldFilter> fieldFilterToStringCallCache)
         {
-            _toStringCallCache = toStringCallCache ?? throw new ArgumentNullException(nameof(toStringCallCache));
+            _queryStringParametersToStringCallCache = queryStringParametersToStringCallCache ?? throw new ArgumentNullException(nameof(queryStringParametersToStringCallCache));
+            _fieldFilterToStringCallCache = fieldFilterToStringCallCache ?? throw new ArgumentException(nameof(fieldFilterToStringCallCache));
         }
 
         async Task<T> IRestClient.GetAsync<T>(string requestUri, string mimeType)
@@ -42,6 +46,12 @@ namespace OScience.Common.Http
         async Task<T> IRestClient.GetByQuery<T, QueryParam, PagingQueryParam>(string requestUri, QueryParam queryString, PagingQueryParam pagingQuery, string mimeType)
         {
             return await GetByQueryInternal<T, QueryParam, PagingQueryParam>(requestUri, mimeType, queryString, pagingQuery).ConfigureAwait(false);
+        }
+
+        async Task<T> GetByQuery<T, QueryParam, PagingQueryParam>(string requestUri, QueryParam queryString, PagingQueryParam pagingQuery, IFieldFilter fieldFilter, string mimeType)
+        {
+            return default;
+            //return await GetByQueryInternal<T, QueryParam, PagingQueryParam>(requestUri, mimeType, queryString, pagingQuery).ConfigureAwait(false);
         }
 
         internal async Task PostAsync<T>(string requestUri, RequestBody<T> body)
@@ -58,8 +68,8 @@ namespace OScience.Common.Http
             where QueryParam : IQueryStringParameters
             where PagingQueryParam: IQueryStringParameters
         {
-            var pagingQueryString = pagingQuery.ToQueryString<PagingQueryParam>(_toStringCallCache);
-            var queryString = query.ToQueryString<QueryParam>(_toStringCallCache);
+            var pagingQueryString = pagingQuery.ToQueryString<PagingQueryParam>(_queryStringParametersToStringCallCache);
+            var queryString = query.ToQueryString<QueryParam>(_queryStringParametersToStringCallCache);
 
             var builder = new UriBuilder(_client.BaseAddress);
 

@@ -3,8 +3,11 @@ using MaterialsProject.Constants;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OScience.MaterialsProject;
+using OScience.Common.Cache;
 using System;
 using System.Net.Http;
+using OScience.Common.RequestData;
+using System.Collections.Generic;
 
 namespace MaterialsProject.DependencyInjection.Extensions
 {
@@ -55,9 +58,16 @@ namespace MaterialsProject.DependencyInjection.Extensions
             
             services.AddSingleton<IMaterialsProjectClient, MaterialsProjectClient>(factory =>
             {
-                return new MaterialsProjectClient(client, apiKey);
+                var cachePrecompiler = new CachePrecompiler<MaterialsProjectClient>();
+
+                return new MaterialsProjectClient(client,
+                    new List<IPrecompiledCache> { new TypePropertyNamesCache<IFieldFilter>(), new TypePropertiesToStringCallCache<IQueryStringParameters>()},
+                    cachePrecompiler, apiKey);
             });
 #else
+            services.AddSingleton<IPrecompiledCache, TypePropertiesToStringCallCache<IQueryStringParameters>>();
+            services.AddSingleton<IPrecompiledCache, TypePropertiesToStringCallCache<IFieldFilter>>();
+            services.AddSingleton<ICachePrecompiler<MaterialsProjectClient>, CachePrecompiler<MaterialsProjectClient>>();
             services.AddHttpClient<IMaterialsProjectClient, MaterialsProjectClient>()
                 .ConfigureHttpClient(client =>
                 {

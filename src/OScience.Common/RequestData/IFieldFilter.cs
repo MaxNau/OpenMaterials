@@ -1,4 +1,4 @@
-﻿namespace MaterialsProject.RequestQueries.FieldFilters
+﻿namespace OScience.Common.RequestData
 {
     internal interface IFieldFilter
     {

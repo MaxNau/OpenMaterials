@@ -9,17 +9,16 @@ namespace OScience.Common.Cache
 {
     internal sealed class TypePropertiesToStringCallCache<T> : IPrecompiledCache, IToStringCallCache<T>
     {
-        private readonly Dictionary<string, List<Tuple<string, Func<T, string>>>> _queryParametersCache = new Dictionary<string, List<Tuple<string, Func<T, string>>>>();
-
+        private readonly Dictionary<string, List<Tuple<string, Func<T, string>>>> _toStringCallCache = new Dictionary<string, List<Tuple<string, Func<T, string>>>>();
 
         List<Tuple<string, Func<T, string>>> IToStringCallCache<T>.Get<CachedType>()
         {
-            return _queryParametersCache[typeof(CachedType).Name];
+            return _toStringCallCache[typeof(CachedType).Name];
         }
 
         void IPrecompiledCache.Precompile(Assembly assembly)
         {
-            if (_queryParametersCache.Count > 0)
+            if (_toStringCallCache.Count > 0)
             {
                 return;
             }
@@ -30,7 +29,7 @@ namespace OScience.Common.Cache
 
             foreach (var queryParameter in queryParameters)
             {
-                _queryParametersCache.Add(queryParameter.Name, new List<Tuple<string, Func<T, string>>>());
+                _toStringCallCache.Add(queryParameter.Name, new List<Tuple<string, Func<T, string>>>());
 
                 foreach (var propertyInfo in queryParameter.GetProperties())
                 {
@@ -44,7 +43,7 @@ namespace OScience.Common.Cache
                             var toStringPrecompiled = BuildToStringPrecompiledLambda(interfacesProperty, propertyInfo);
 
                             var queryParameterAttribute = interfacesProperty.GetCustomAttribute<QueryParameterAttribute>();
-                            _queryParametersCache[queryParameter.Name].Add(
+                            _toStringCallCache[queryParameter.Name].Add(
                                 new Tuple<string, Func<T, string>>(
                                     BuildParameterName(interfacesProperty, parentParameterName), toStringPrecompiled));
                         }
@@ -54,7 +53,7 @@ namespace OScience.Common.Cache
                         var toStringPrecompiled = BuildToStringPrecompiledLambda(propertyInfo);
 
                         var queryParameterAttribute = propertyInfo.GetCustomAttribute<QueryParameterAttribute>();
-                        _queryParametersCache[queryParameter.Name].Add(
+                        _toStringCallCache[queryParameter.Name].Add(
                             new Tuple<string, Func<T, string>>(
                                 BuildParameterName(propertyInfo), toStringPrecompiled));
                     }
