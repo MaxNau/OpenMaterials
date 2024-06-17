@@ -28,8 +28,7 @@ namespace OScience.MaterialsProject.Endpoints
 
         public async Task<Response<MaterialsDoc>> GetAsync(MaterialsQuery materialsParameters, PagingParameters pagingParameters, MaterialsDocFilter materialsDocFilter)
         {
-            materialsDocFilter.GetFilter();
-            return await _restClient.GetByQuery<Response<MaterialsDoc>, MaterialsQuery, PagingParameters>("materials/core/", materialsParameters, pagingParameters);
+            return await _restClient.GetByQuery<Response<MaterialsDoc>, MaterialsQuery, PagingParameters, MaterialsDocFilter>("materials/core/", materialsParameters, pagingParameters, materialsDocFilter);
         }
     }
 }

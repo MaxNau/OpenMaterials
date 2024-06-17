@@ -45,13 +45,12 @@ namespace OScience.Common.Http
 
         async Task<T> IRestClient.GetByQuery<T, QueryParam, PagingQueryParam>(string requestUri, QueryParam queryString, PagingQueryParam pagingQuery, string mimeType)
         {
-            return await GetByQueryInternal<T, QueryParam, PagingQueryParam>(requestUri, mimeType, queryString, pagingQuery).ConfigureAwait(false);
+            return await GetByQueryInternal<T, QueryParam, PagingQueryParam, IFieldFilter>(requestUri, mimeType, queryString, pagingQuery, default).ConfigureAwait(false);
         }
 
-        async Task<T> GetByQuery<T, QueryParam, PagingQueryParam>(string requestUri, QueryParam queryString, PagingQueryParam pagingQuery, IFieldFilter fieldFilter, string mimeType)
+        async Task<T> IRestClient.GetByQuery<T, QueryParam, PagingQueryParam, FieldFilterParam>(string requestUri, QueryParam queryString, PagingQueryParam pagingQuery, FieldFilterParam fieldFilterQuery, string mimeType)
         {
-            return default;
-            //return await GetByQueryInternal<T, QueryParam, PagingQueryParam>(requestUri, mimeType, queryString, pagingQuery).ConfigureAwait(false);
+            return await GetByQueryInternal<T, QueryParam, PagingQueryParam, FieldFilterParam>(requestUri, mimeType, queryString, pagingQuery, fieldFilterQuery).ConfigureAwait(false);
         }
 
         internal async Task PostAsync<T>(string requestUri, RequestBody<T> body)
@@ -64,27 +63,37 @@ namespace OScience.Common.Http
             _client.DefaultRequestHeaders.Add(name, value);
         }
 
-        private async Task<T> GetByQueryInternal<T, QueryParam, PagingQueryParam>(string requestUri, string mimeType, QueryParam query, PagingQueryParam pagingQuery = default)
+        private async Task<T> GetByQueryInternal<T, QueryParam, PagingQueryParam, FieldFilterParam>(string requestUri, string mimeType, QueryParam query, PagingQueryParam pagingQuery = default, FieldFilterParam fieldFilterQuery = default)
             where QueryParam : IQueryStringParameters
             where PagingQueryParam: IQueryStringParameters
+            where FieldFilterParam : class, IFieldFilter
         {
-            var pagingQueryString = pagingQuery.ToQueryString<PagingQueryParam>(_queryStringParametersToStringCallCache);
+            var pagingQueryString = pagingQuery?.ToQueryString<PagingQueryParam>(_queryStringParametersToStringCallCache);
             var queryString = query.ToQueryString<QueryParam>(_queryStringParametersToStringCallCache);
 
-            var builder = new UriBuilder(_client.BaseAddress);
+            var cacheAdapter = new ToStringCallCacheAdapter<FieldFilterParam>(_fieldFilterToStringCallCache);
+            var fieldFilterQueryString = fieldFilterQuery.GetFilterQuery(cacheAdapter);
 
-            if (queryString != null)
-            {
-                builder.Query = string.Join("&", pagingQueryString, queryString);
-            }
+            var uriQueryBuilder = new UriQueryBuilder(_client.BaseAddress.ToString());
 
-            builder.Path = requestUri;
+            uriQueryBuilder.AppendQuery(queryString);
+            uriQueryBuilder.AppendQuery(pagingQueryString);
+            uriQueryBuilder.AppendQuery(fieldFilterQueryString);
+            uriQueryBuilder.SetPath(requestUri);
 
             var serializer = _serializerFactory.Create(mimeType);
-            var response = await _client.GetAsync(builder.Uri).ConfigureAwait(false);
+            var response = await _client.GetAsync(uriQueryBuilder.Build()).ConfigureAwait(false);
             using (var streamResult = await response.Content.ReadAsStreamAsync().ConfigureAwait(false))
             {
                 return await serializer.DeserializeAsync<T>(streamResult).ConfigureAwait(false);
+            }
+        }
+
+        private void AppendAdditionalQueryParameters(UriBuilder builder, string query)
+        {
+            if (!string.IsNullOrEmpty(query))
+            {
+                builder.Query += string.IsNullOrEmpty(builder.Query) ? query : $"&{query}";
             }
         }
     }

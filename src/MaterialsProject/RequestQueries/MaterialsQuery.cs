@@ -8,7 +8,7 @@ namespace OScience.MaterialsProject.RequestParameters
     {
         public MaterialsQuery(
             string materialIds = default, string formula = default, string chemsys = default,
-            string taskIds = default, string crystalSystem = default, int spaceGroupNumber = default,
+            string taskIds = default, string crystalSystem = default, int? spaceGroupNumber = default,
             SitesQuery sitesQuery = default, ElementsQuery elementsQuery = default,
             DensityQuery density = default, DensityAtomicQuery densityAtomic = default)
         {

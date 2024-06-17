@@ -1,7 +1,8 @@
-﻿namespace OScience.Common.RequestData
+﻿using OScience.Common.Cache;
+
+namespace OScience.Common.RequestData
 {
-    internal interface IFieldFilter
+    internal interface IFieldFilter : IQueryStringParameters
     {
-        string GetFilter();
     }
 }
