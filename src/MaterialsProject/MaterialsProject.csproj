@@ -11,11 +11,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="RequestQueries\Core\" />
+    <ProjectReference Include="..\OScience.Common\OScience.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OScience.Common\OScience.Common.csproj" />
+    <Folder Include="RequestQueries\Tasks\" />
   </ItemGroup>
 
 </Project>

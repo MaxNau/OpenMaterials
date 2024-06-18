@@ -2,7 +2,7 @@
 
 namespace OScience.MaterialsProject.RequestQueries
 {
-    public class DensityAtomicQuery : IMinMaxQuery
+    public sealed class DensityAtomicQuery : IMinMaxQuery
     {
         public DensityAtomicQuery(int? max = default, int? min = default)
         {

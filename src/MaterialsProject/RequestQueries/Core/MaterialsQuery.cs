@@ -2,7 +2,7 @@
 using OScience.Common.RequestData;
 using OScience.MaterialsProject.RequestQueries;
 
-namespace OScience.MaterialsProject.RequestParameters
+namespace MaterialsProject.RequestQueries.Core
 {
     public sealed class MaterialsQuery : IQueryStringParameters
     {
@@ -31,27 +31,27 @@ namespace OScience.MaterialsProject.RequestParameters
 
         [QueryParameter(StringLiterals.TaskIds)]
         public string TaskIds { get; }
-        
+
         [QueryParameter(StringLiterals.CrystalSystem)]
         public string CrystalSystem { get; }
-        
+
         [QueryParameter(StringLiterals.SpacegroupNumber)]
         public int? SpaceGroupNumber { get; }
-        
+
         [QueryParameter(StringLiterals.SpacegroupSymbol)]
         public string SpaceGroupSymbol { get; }
-        
+
         public bool? Deprecated { get; }
-        
+
         [QueryParameter(StringLiterals.Nsites)]
         public SitesQuery Sites { get; }
-        
+
         [QueryParameter(StringLiterals.Nelements)]
         public ElementsQuery Elements { get; }
-        
+
         [QueryParameter(StringLiterals.Density)]
         public DensityQuery Density { get; }
-        
+
         [QueryParameter(StringLiterals.DensityAtomic)]
         public DensityAtomicQuery DensityAtomic { get; }
     }
