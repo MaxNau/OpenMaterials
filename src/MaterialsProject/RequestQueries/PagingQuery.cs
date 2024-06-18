@@ -1,11 +1,11 @@
 ﻿using MaterialsProject.Constants;
 using OScience.Common.RequestData;
 
-namespace OScience.MaterialsProject.RequestParameters
+namespace OScience.MaterialsProject.RequestQueries
 {
-    public sealed class PagingParameters : IQueryStringParameters
+    public sealed class PagingQuery : IQueryStringParameters
     {
-        public PagingParameters(int? page = null, int? perPage = null, int? skip = null, int? limit = null)
+        public PagingQuery(int? page = null, int? perPage = null, int? skip = null, int? limit = null)
         {
             Page = page;
             PerPage = perPage;

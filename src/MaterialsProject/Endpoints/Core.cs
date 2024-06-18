@@ -3,7 +3,7 @@ using MaterialsProject.RequestQueries.FieldFilters;
 using MaterialsProject.Responses;
 using MaterialsProject.Responses.Materials;
 using OScience.Common.Http;
-using OScience.MaterialsProject.RequestParameters;
+using OScience.MaterialsProject.RequestQueries;
 using System;
 using System.Threading.Tasks;
 
@@ -22,14 +22,14 @@ namespace OScience.MaterialsProject.Endpoints
             return await _restClient.GetAsync<Response<MaterialsDoc>>("materials/core/").ConfigureAwait(false);
         }
 
-        public async Task<Response<MaterialsDoc>> GetAsync(MaterialsQuery materialsParameters, PagingParameters pagingParameters)
+        public async Task<Response<MaterialsDoc>> GetAsync(MaterialsQuery materialsParameters, PagingQuery pagingParameters)
         {
-            return await _restClient.GetByQueryAsync<Response<MaterialsDoc>, MaterialsQuery, PagingParameters>("materials/core/", materialsParameters, pagingParameters).ConfigureAwait(false);
+            return await _restClient.GetByQueryAsync<Response<MaterialsDoc>, MaterialsQuery, PagingQuery>("materials/core/", materialsParameters, pagingParameters).ConfigureAwait(false);
         }
 
-        public async Task<Response<MaterialsDoc>> GetAsync(MaterialsQuery materialsParameters, PagingParameters pagingParameters, MaterialsDocFilter materialsDocFilter)
+        public async Task<Response<MaterialsDoc>> GetAsync(MaterialsQuery materialsParameters, PagingQuery pagingParameters, MaterialsDocFilter materialsDocFilter)
         {
-            return await _restClient.GetByQueryAsync<Response<MaterialsDoc>, MaterialsQuery, PagingParameters, MaterialsDocFilter>("materials/core/", materialsParameters, pagingParameters, materialsDocFilter).ConfigureAwait(false);
+            return await _restClient.GetByQueryAsync<Response<MaterialsDoc>, MaterialsQuery, PagingQuery, MaterialsDocFilter>("materials/core/", materialsParameters, pagingParameters, materialsDocFilter).ConfigureAwait(false);
         }
     }
 }
