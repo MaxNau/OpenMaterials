@@ -1,4 +1,5 @@
 ﻿using MaterialsProject.Constants;
+using MaterialsProject.Endpoints;
 using OScience.Common.Cache;
 using OScience.Common.Http;
 using OScience.Common.RequestData;
@@ -32,7 +33,7 @@ namespace OScience.MaterialsProject
                 AddDefaultRequestHeaders(MaterialsProjectHeaderNames.ApiKey, apiKey);
             }
 
-            Core = new Core(this);
+            InitEndpoints();
         }
 
         internal MaterialsProjectClient(
@@ -56,10 +57,17 @@ namespace OScience.MaterialsProject
                 AddDefaultRequestHeaders(MaterialsProjectHeaderNames.ApiKey, apiKey);
             }
 
-            Core = new Core(this);
+            InitEndpoints();
         }
 
-        public ICore Core { get; }
+        public ICore Core { get; private set; }
+        public ITasks Tasks { get; private set; }
+
+        private void InitEndpoints()
+        {
+            Core = new Core(this);
+            Tasks = new Tasks(this);
+        }
 
         private static HttpClient SetBaseUri(HttpClient client)
         {

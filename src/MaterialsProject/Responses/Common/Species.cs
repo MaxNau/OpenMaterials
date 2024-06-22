@@ -2,7 +2,7 @@
 
 namespace MaterialsProject.Responses.Common
 {
-    public class Species
+    public class Species : PymatgenModule
     {
         public ChemicalSymbol Element { get; set; }
         public long Occu { get; set; }

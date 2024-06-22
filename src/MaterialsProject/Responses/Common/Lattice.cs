@@ -1,6 +1,6 @@
 ﻿namespace MaterialsProject.Responses.Common
 {
-    public class Lattice
+    public class Lattice : PymatgenModule
     {
         public double[][] Matrix { get; set; }
         public bool[] Pbc { get; set; }

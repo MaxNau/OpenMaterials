@@ -14,8 +14,4 @@
     <ProjectReference Include="..\OScience.Common\OScience.Common.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="RequestQueries\Tasks\" />
-  </ItemGroup>
-
 </Project>
