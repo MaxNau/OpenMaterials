@@ -4,6 +4,11 @@ namespace MaterialsProject.RequestQueries.FieldFilters
 {
     public class MaterialFilter : IFieldFilter
     {
+        public MaterialFilter(bool includeAllFields = false)
+        {
+            IncludeAllFields = includeAllFields;
+        }
+
         public bool BuilderMeta { get; set; }
         public bool Nsites { get; set; }
         public bool Elements { get; set; }
@@ -19,5 +24,6 @@ namespace MaterialsProject.RequestQueries.FieldFilters
         public bool Symmetry { get; set; }
         public bool Structure { get; set; }
         public bool LastUpdated { get; set; }
+        public bool IncludeAllFields { get; }
     }
 }

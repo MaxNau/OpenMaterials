@@ -73,6 +73,10 @@ namespace OScience.Common.Http
 
             var cacheAdapter = new ToStringCallCacheAdapter<FieldFilterParam>(_fieldFilterToStringCallCache);
             var fieldFilterQueryString = fieldFilterQuery.GetFilterQuery(cacheAdapter);
+            if (fieldFilterQuery.IncludeAllFields && fieldFilterQueryString == "_fields=include_all_fields")
+            {
+                fieldFilterQueryString = "_all_fields=true";
+            }
 
             var uriQueryBuilder = new UriQueryBuilder(_client.BaseAddress.ToString());
 
@@ -82,10 +86,14 @@ namespace OScience.Common.Http
             uriQueryBuilder.SetPath(requestUri);
 
             var serializer = _serializerFactory.Create(mimeType);
-            var response = await _client.GetAsync(uriQueryBuilder.Build()).ConfigureAwait(false);
-            using (var streamResult = await response.Content.ReadAsStreamAsync().ConfigureAwait(false))
+            using (var response = await _client.GetAsync(uriQueryBuilder.Build()).ConfigureAwait(false))
             {
-                return await serializer.DeserializeAsync<T>(streamResult).ConfigureAwait(false);
+                response.EnsureSuccessStatusCode();
+
+                using (var streamResult = await response.Content.ReadAsStreamAsync().ConfigureAwait(false))
+                {
+                    return await serializer.DeserializeAsync<T>(streamResult).ConfigureAwait(false);
+                }
             }
         }
     }

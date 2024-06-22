@@ -3,6 +3,11 @@ namespace MaterialsProject.RequestQueries.FieldFilters
 {
     public class MaterialsDocFilter : MaterialFilter
     {
+        public MaterialsDocFilter(bool includeAllFields = false)
+            : base(includeAllFields)
+        {
+        }
+
         public bool MaterialId { get; set; }
         public bool Deprecated { get; set; }
         public bool DeprecatedReasons { get; set; }
