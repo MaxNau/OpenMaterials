@@ -15,6 +15,8 @@ namespace OScience.Common.Extensions
 
         private static IEnumerable<string> BuildQueryParameters<T>(IQueryStringParameters obj, IToStringCallCache<IQueryStringParameters> toStringCallCache) where T : IQueryStringParameters
         {
+            if (obj == null) yield break;
+
             foreach ((string parameterName, Func<IQueryStringParameters, string> parameterValueFunc) in toStringCallCache.Get<T>())
             {
                 string parameterValue = parameterValueFunc(obj);
