@@ -4,7 +4,6 @@ using ApiClient.Http.Cache;
 using ApiClient.Http;
 using ApiClient.Http.RequestData;
 using ApiClient.Http.Serialization;
-using MaterialsProject.Endpoints;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,15 +22,7 @@ namespace MaterialsProject
 
             cachePrecompiler.PrecompileCache(typePropertyNamesCache, typePropertiesToStringCallCache);
             SetCache(typePropertiesToStringCallCache, typePropertyNamesCache);
-
-            if (string.IsNullOrEmpty(apiKey) && !client.DefaultRequestHeaders.Contains(MaterialsProjectHeaderNames.ApiKey))
-            {
-                new ArgumentNullException(nameof(apiKey));
-            }
-            else
-            {
-                AddDefaultRequestHeaders(MaterialsProjectHeaderNames.ApiKey, apiKey);
-            }
+            SetApiKey(client, apiKey);
 
             InitEndpoints();
         }
@@ -48,14 +39,7 @@ namespace MaterialsProject
                 precompiledCaches.OfType<IToStringCallCache<IQueryStringParameters>>().FirstOrDefault(),
                 precompiledCaches.OfType<IToStringCallCache<IFieldFilter>>().FirstOrDefault());
 
-            if (string.IsNullOrEmpty(apiKey) && !client.DefaultRequestHeaders.Contains(MaterialsProjectHeaderNames.ApiKey))
-            {
-                new ArgumentNullException(nameof(apiKey));
-            }
-            else
-            {
-                AddDefaultRequestHeaders(MaterialsProjectHeaderNames.ApiKey, apiKey);
-            }
+            SetApiKey(client, apiKey);
 
             InitEndpoints();
         }
@@ -67,6 +51,23 @@ namespace MaterialsProject
         {
             Core = new Core(this);
             Tasks = new Tasks(this);
+        }
+
+        private void SetApiKey(HttpClient client, string apiKey)
+        {
+            bool apiKeyHeaderExists = client.DefaultRequestHeaders.Contains(MaterialsProjectHeaderNames.ApiKey);
+
+            if (string.IsNullOrEmpty(apiKey))
+            {
+                if (!apiKeyHeaderExists)
+                {
+                    throw new ArgumentNullException(nameof(apiKey), "API key is required and was not provided.");
+                }
+            }
+            else if (!apiKeyHeaderExists)
+            {
+                client.DefaultRequestHeaders.Add(MaterialsProjectHeaderNames.ApiKey, apiKey);
+            }
         }
 
         private static HttpClient SetBaseUri(HttpClient client)
