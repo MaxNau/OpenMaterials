@@ -9,8 +9,8 @@ namespace MaterialsProject.Responses.Tasks
         public double? EWoEntrp { get; set; }
         [JsonPropertyName("e_0_energy")]
         public double? E0Energy { get; set; }
-        public double[][] Forces { get; set; }
-        public double[][] Stresses { get; set; }
+        public double?[][] Forces { get; set; }
+        public double?[][] Stresses { get; set; }
         public List<Dictionary<string, double?>> ElectronicSteps { get; set; }
     }
 }
