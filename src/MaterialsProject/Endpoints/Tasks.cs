@@ -6,6 +6,7 @@ using ApiClient.Http;
 using MaterialsProject.RequestQueries;
 using System;
 using System.Threading.Tasks;
+using MaterialsProject.Endpoints.Task;
 
 namespace MaterialsProject.Endpoints
 {
@@ -16,10 +17,12 @@ namespace MaterialsProject.Endpoints
         {
             _restClient = restClient ?? throw new ArgumentNullException(nameof(restClient));
 
-            InitEndpoints();
+            InitEndpoints(); 
         }
 
         public IEntries Entries { get; private set; }
+        public IDeprecation Deprecation { get; private set; }
+        public ITrajectory Trajectory { get; private set; }
 
         public async Task<Response<TaskDoc>> GetAsync()
         {
@@ -44,6 +47,8 @@ namespace MaterialsProject.Endpoints
         private void InitEndpoints()
         {
             Entries = new Entries(_restClient);
+            Deprecation = new Deprecation(_restClient);
+            Trajectory = new Task.Trajectory(_restClient);
         }
     }
 }

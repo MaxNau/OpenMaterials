@@ -4,12 +4,12 @@ using MaterialsProject.Responses.Tasks;
 using MaterialsProject.RequestQueries;
 using System.Threading.Tasks;
 
-namespace MaterialsProject.Endpoints
+namespace MaterialsProject.Endpoints.Task
 {
     public interface IEntries
     {
-        Task<Response<TaskEntry>> GetFullAsync();
+        Task<Response<EntryDoc>> GetFullAsync();
 
-        Task<Response<TaskEntry>> GetAsync(EntryDocQuery entryDocQuery, PagingQuery pagingParameters);
+        Task<Response<EntryDoc>> GetAsync(EntryDocQuery entryDocQuery, PagingQuery pagingParameters);
     }
 }

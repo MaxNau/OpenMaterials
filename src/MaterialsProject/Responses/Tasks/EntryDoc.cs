@@ -2,7 +2,7 @@
 
 namespace MaterialsProject.Responses.Tasks
 {
-    public class TaskEntry
+    public class EntryDoc
     {
         public string TaskId { get; set; }
         public Entry Entry { get; set; }
