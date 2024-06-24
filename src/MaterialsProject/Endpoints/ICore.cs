@@ -2,10 +2,10 @@
 using MaterialsProject.RequestQueries.FieldFilters;
 using MaterialsProject.Responses;
 using MaterialsProject.Responses.Materials;
-using OScience.MaterialsProject.RequestQueries;
+using MaterialsProject.RequestQueries;
 using System.Threading.Tasks;
 
-namespace OScience.MaterialsProject.Endpoints
+namespace MaterialsProject.Endpoints
 {
     public interface ICore
     {

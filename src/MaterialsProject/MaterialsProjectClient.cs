@@ -4,13 +4,13 @@ using ApiClient.Http.Cache;
 using ApiClient.Http;
 using ApiClient.Http.RequestData;
 using ApiClient.Http.Serialization;
-using OScience.MaterialsProject.Endpoints;
+using MaterialsProject.Endpoints;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 
-namespace OScience.MaterialsProject
+namespace MaterialsProject
 {
     public class MaterialsProjectClient : RestClient, IMaterialsProjectClient
     {

@@ -1,7 +1,6 @@
 ﻿using MaterialsProject.Endpoints;
-using OScience.MaterialsProject.Endpoints;
 
-namespace OScience.MaterialsProject
+namespace MaterialsProject
 {
     public interface IMaterialsProjectClient
     {

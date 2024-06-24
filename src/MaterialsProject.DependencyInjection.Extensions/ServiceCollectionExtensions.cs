@@ -2,7 +2,7 @@
 using MaterialsProject.Constants;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using OScience.MaterialsProject;
+using MaterialsProject;
 using ApiClient.Http.Cache;
 using System;
 using System.Net.Http;

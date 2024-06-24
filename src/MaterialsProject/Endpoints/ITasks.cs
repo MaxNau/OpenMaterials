@@ -2,7 +2,7 @@
 using MaterialsProject.RequestQueries.Tasks;
 using MaterialsProject.Responses;
 using MaterialsProject.Responses.Tasks;
-using OScience.MaterialsProject.RequestQueries;
+using MaterialsProject.RequestQueries;
 using System.Threading.Tasks;
 
 namespace MaterialsProject.Endpoints

@@ -1,6 +1,6 @@
-﻿using OScience.MaterialsProject.RequestQueries.Clauses;
+﻿using MaterialsProject.RequestQueries.Clauses;
 
-namespace OScience.MaterialsProject.RequestQueries
+namespace MaterialsProject.RequestQueries
 {
     public sealed class SitesQuery : IMinMaxQuery, IEqualsQuery, IInQuery
     {

@@ -1,7 +1,7 @@
 ﻿using MaterialsProject.Constants;
 using ApiClient.Http.RequestData;
 
-namespace OScience.MaterialsProject.RequestQueries
+namespace MaterialsProject.RequestQueries
 {
     public sealed class PagingQuery : IQueryStringParameters
     {

@@ -3,7 +3,7 @@ using MaterialsProject.RequestQueries.Tasks;
 using MaterialsProject.Responses;
 using MaterialsProject.Responses.Tasks;
 using ApiClient.Http;
-using OScience.MaterialsProject.RequestQueries;
+using MaterialsProject.RequestQueries;
 using System;
 using System.Threading.Tasks;
 

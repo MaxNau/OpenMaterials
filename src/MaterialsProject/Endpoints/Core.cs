@@ -3,11 +3,11 @@ using MaterialsProject.RequestQueries.FieldFilters;
 using MaterialsProject.Responses;
 using MaterialsProject.Responses.Materials;
 using ApiClient.Http;
-using OScience.MaterialsProject.RequestQueries;
+using MaterialsProject.RequestQueries;
 using System;
 using System.Threading.Tasks;
 
-namespace OScience.MaterialsProject.Endpoints
+namespace MaterialsProject.Endpoints
 {
     internal class Core : ICore
     {
