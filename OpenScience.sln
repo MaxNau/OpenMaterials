@@ -7,9 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{392ECA3E-770
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaterialsProject", "src\MaterialsProject\MaterialsProject.csproj", "{A6F5FECC-2232-41DD-ABEA-C3B6C8FF7E67}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OScience.Common", "src\OScience.Common\OScience.Common.csproj", "{3CFBF9DB-1A82-4015-A8E1-5341F95D1433}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiClient.Http", "src\ApiClient.Http\ApiClient.Http.csproj", "{3CFBF9DB-1A82-4015-A8E1-5341F95D1433}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialsProject.DependencyInjection.Extensions", "src\MaterialsProject.DependencyInjection.Extensions\MaterialsProject.DependencyInjection.Extensions.csproj", "{367AF85A-15BF-4A7C-814F-365847CCDCA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaterialsProject.DependencyInjection.Extensions", "src\MaterialsProject.DependencyInjection.Extensions\MaterialsProject.DependencyInjection.Extensions.csproj", "{367AF85A-15BF-4A7C-814F-365847CCDCA4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
