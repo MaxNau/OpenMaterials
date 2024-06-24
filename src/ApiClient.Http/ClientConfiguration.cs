@@ -1,4 +1,4 @@
-﻿namespace OScience.Common
+﻿namespace ApiClient.Http
 {
     public abstract class ClientConfiguration
     {

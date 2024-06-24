@@ -1,4 +1,4 @@
-﻿using OScience.Common.RequestData;
+﻿using ApiClient.Http.RequestData;
 
 namespace OScience.MaterialsProject.RequestQueries.Clauses
 {

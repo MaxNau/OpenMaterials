@@ -44,6 +44,15 @@ namespace MaterialsProject.Responses.Tasks
         public string ElfcarFsId { get; set; }
         public string LocpotCompression { get; set; }
         public string LocpotFsId { get; set; }
+
+        /// <summary>
+        /// Crystallographic Information Format file
+        /// This is a CIF file.  CIF has been adopted by the International
+        /// Union of Crystallography as the standard for data archiving and
+        /// transmission.
+        /// For information on this file format, follow the CIF links at
+        /// http://www.iucr.org
+        /// </summary>
         public object Cif { get; set; }
         public string PrettyFormula { get; set; }
         public Dictionary<ChemicalSymbol, double> ReducedCellFormula { get; set; }

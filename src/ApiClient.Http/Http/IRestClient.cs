@@ -1,7 +1,7 @@
-﻿using OScience.Common.RequestData;
+﻿using ApiClient.Http.RequestData;
 using System.Threading.Tasks;
 
-namespace OScience.Common.Http
+namespace ApiClient.Http
 {
     internal interface IRestClient
     {

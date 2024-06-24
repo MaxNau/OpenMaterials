@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
 
-namespace OScience.Common.Serialization
+namespace ApiClient.Http.Serialization
 {
     /// <summary>
     /// Message serializer interface

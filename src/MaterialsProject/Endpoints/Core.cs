@@ -2,7 +2,7 @@
 using MaterialsProject.RequestQueries.FieldFilters;
 using MaterialsProject.Responses;
 using MaterialsProject.Responses.Materials;
-using OScience.Common.Http;
+using ApiClient.Http;
 using OScience.MaterialsProject.RequestQueries;
 using System;
 using System.Threading.Tasks;

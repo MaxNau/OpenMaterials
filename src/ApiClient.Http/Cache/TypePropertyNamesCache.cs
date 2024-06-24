@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace OScience.Common.Cache
+namespace ApiClient.Http.Cache
 {
     internal sealed class TypePropertyNamesCache<T> : IPrecompiledCache, IToStringCallCache<T>
     {

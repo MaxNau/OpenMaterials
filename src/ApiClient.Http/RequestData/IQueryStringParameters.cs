@@ -1,4 +1,4 @@
-﻿namespace OScience.Common.RequestData
+﻿namespace ApiClient.Http.RequestData
 {
     public interface IQueryStringParameters
     {

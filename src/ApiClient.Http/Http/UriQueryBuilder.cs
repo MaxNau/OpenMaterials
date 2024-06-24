@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OScience.Common.Http
+namespace ApiClient.Http
 {
     internal class UriQueryBuilder
     {

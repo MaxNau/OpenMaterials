@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace OScience.Common.Cache
+namespace ApiClient.Http.Cache
 {
     internal interface IPrecompiledCache
     {

@@ -2,7 +2,7 @@
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace OScience.Common.Serialization
+namespace ApiClient.Http.Serialization
 {
     internal class TextJsonSerializer : ISerializer
     {

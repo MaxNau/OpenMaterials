@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OScience.Common.RequestData
+namespace ApiClient.Http.RequestData
 {
     [AttributeUsage(AttributeTargets.Property)]
     public class QueryParameterAttribute : Attribute

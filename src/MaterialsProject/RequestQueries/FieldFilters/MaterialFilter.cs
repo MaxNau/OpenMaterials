@@ -1,4 +1,4 @@
-﻿using OScience.Common.RequestData;
+﻿using ApiClient.Http.RequestData;
 
 namespace MaterialsProject.RequestQueries.FieldFilters
 {

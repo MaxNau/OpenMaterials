@@ -1,12 +1,12 @@
-﻿using OScience.Common.Cache;
-using OScience.Common.Extensions;
-using OScience.Common.RequestData;
-using OScience.Common.Serialization;
+﻿using ApiClient.Http.Cache;
+using ApiClient.Http.Extensions;
+using ApiClient.Http.RequestData;
+using ApiClient.Http.Serialization;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace OScience.Common.Http
+namespace ApiClient.Http
 {
     public class RestClient : IRestClient
     {

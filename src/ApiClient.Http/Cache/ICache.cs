@@ -1,4 +1,4 @@
-﻿namespace OScience.Common.Cache
+﻿namespace ApiClient.Http.Cache
 {
     internal interface ICache<out T> where T: class
     {

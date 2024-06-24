@@ -1,9 +1,9 @@
-﻿using OScience.Common.Cache;
-using OScience.Common.RequestData;
+﻿using ApiClient.Http.Cache;
+using ApiClient.Http.RequestData;
 using System.Collections.Generic;
 using System;
 
-namespace OScience.Common.Extensions
+namespace ApiClient.Http.Extensions
 {
     internal static class IQueryStringParametersExtensions
     {

@@ -1,8 +1,8 @@
-﻿using OScience.Common.RequestData;
+﻿using ApiClient.Http.RequestData;
 using System;
 using System.Collections.Generic;
 
-namespace OScience.Common.Cache
+namespace ApiClient.Http.Cache
 {
     internal interface IToStringCallCache<T>
     {

@@ -1,11 +1,11 @@
-﻿using OScience.Common.RequestData;
+﻿using ApiClient.Http.RequestData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace OScience.Common.Cache
+namespace ApiClient.Http.Cache
 {
     internal sealed class TypePropertiesToStringCallCache<T> : IPrecompiledCache, IToStringCallCache<T>
     {

@@ -1,8 +1,8 @@
-﻿using OScience.Common.Serialization;
+﻿using ApiClient.Http.Serialization;
 using System.Net.Http;
 using System.Text;
 
-namespace OScience.Common.RequestData
+namespace ApiClient.Http.RequestData
 {
     internal class RequestBody<T>
     {

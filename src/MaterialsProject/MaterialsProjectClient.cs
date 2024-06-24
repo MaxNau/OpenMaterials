@@ -1,9 +1,9 @@
 ﻿using MaterialsProject.Constants;
 using MaterialsProject.Endpoints;
-using OScience.Common.Cache;
-using OScience.Common.Http;
-using OScience.Common.RequestData;
-using OScience.Common.Serialization;
+using ApiClient.Http.Cache;
+using ApiClient.Http;
+using ApiClient.Http.RequestData;
+using ApiClient.Http.Serialization;
 using OScience.MaterialsProject.Endpoints;
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,4 @@
-﻿namespace OScience.Common.Serialization
+﻿namespace ApiClient.Http.Serialization
 {
     public interface ISerializerFactory
     {
