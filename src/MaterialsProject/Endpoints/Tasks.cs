@@ -15,7 +15,11 @@ namespace MaterialsProject.Endpoints
         public Tasks(IRestClient restClient)
         {
             _restClient = restClient ?? throw new ArgumentNullException(nameof(restClient));
+
+            InitEndpoints();
         }
+
+        public IEntries Entries { get; private set; }
 
         public async Task<Response<TaskDoc>> GetAsync()
         {
@@ -35,6 +39,11 @@ namespace MaterialsProject.Endpoints
         public async Task<Response<TaskDoc>> GetAsync(TaskDocQuery taskDocQuery, PagingQuery pagingParameters, TaskDocFilter taskDocFilter)
         {
             return await _restClient.GetByQueryAsync<Response<TaskDoc>, TaskDocQuery, PagingQuery, TaskDocFilter>("materials/tasks/", taskDocQuery, pagingParameters, taskDocFilter).ConfigureAwait(false);
+        }
+
+        private void InitEndpoints()
+        {
+            Entries = new Entries(_restClient);
         }
     }
 }

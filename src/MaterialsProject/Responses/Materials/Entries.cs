@@ -6,14 +6,14 @@ namespace MaterialsProject.Responses.Materials
     public class Entries
     {
         [JsonPropertyName("GGA")]
-        public ComputedEntry Gga { get; set; }
+        public Entry Gga { get; set; }
         [JsonPropertyName("R2SCAN")]
-        public ComputedEntry R2Scan { get; set; }
+        public Entry R2Scan { get; set; }
         [JsonPropertyName("PBESol")]
-        public ComputedEntry PbeSol { get; set; }
+        public Entry PbeSol { get; set; }
         [JsonPropertyName("GGA+U")]
-        public ComputedEntry GgaU { get; set; }
+        public Entry GgaU { get; set; }
         [JsonPropertyName("SCAN")]
-        public ComputedEntry Scan { get; set; }
+        public Entry Scan { get; set; }
     }
 }

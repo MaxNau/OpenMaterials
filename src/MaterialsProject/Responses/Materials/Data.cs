@@ -9,5 +9,6 @@ namespace MaterialsProject.Responses.Materials
         public object LastUpdated { get; set; }
         public string TaskId { get; set; }
         public string MaterialId { get; set; }
+        public string CompletedAt { get; set; }
     }
 }
