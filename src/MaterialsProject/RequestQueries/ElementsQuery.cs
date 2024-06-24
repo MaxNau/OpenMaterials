@@ -1,5 +1,5 @@
 ﻿using MaterialsProject.Constants;
-using OScience.Common.RequestData;
+using ApiClient.Http.RequestData;
 using OScience.MaterialsProject.RequestQueries.Clauses;
 
 namespace OScience.MaterialsProject.RequestQueries
