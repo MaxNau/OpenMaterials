@@ -11,6 +11,6 @@ namespace MaterialsProject.Responses.Tasks
         public double? E0Energy { get; set; }
         public double[][] Forces { get; set; }
         public double[][] Stresses { get; set; }
-        public List<Dictionary<string, double>> ElectronicSteps { get; set; }
+        public List<Dictionary<string, double?>> ElectronicSteps { get; set; }
     }
 }
