@@ -23,6 +23,7 @@ namespace MaterialsProject
             cachePrecompiler.PrecompileCache(typePropertyNamesCache, typePropertiesToStringCallCache);
             SetCache(typePropertiesToStringCallCache, typePropertyNamesCache);
             SetApiKey(client, apiKey);
+            SetDefaultRequestHeaders(client);
 
             InitEndpoints();
         }
@@ -38,19 +39,21 @@ namespace MaterialsProject
             SetCache(
                 precompiledCaches.OfType<IToStringCallCache<IQueryStringParameters>>().FirstOrDefault(),
                 precompiledCaches.OfType<IToStringCallCache<IFieldFilter>>().FirstOrDefault());
-
             SetApiKey(client, apiKey);
+            SetDefaultRequestHeaders(client);
 
             InitEndpoints();
         }
 
         public ICore Core { get; private set; }
         public ITasks Tasks { get; private set; }
+        public IThermo Thermo { get; private set; }
 
         private void InitEndpoints()
         {
             Core = new Core(this);
             Tasks = new Tasks(this);
+            Thermo = new Thermo(this);
         }
 
         private void SetApiKey(HttpClient client, string apiKey)
@@ -68,6 +71,11 @@ namespace MaterialsProject
             {
                 client.DefaultRequestHeaders.Add(MaterialsProjectHeaderNames.ApiKey, apiKey);
             }
+        }
+
+        private void SetDefaultRequestHeaders(HttpClient client)
+        {
+            AddDefaultRequestHeaders("User-Agent", "MaterialsProjectClient/1.0.0");
         }
 
         private static HttpClient SetBaseUri(HttpClient client)
