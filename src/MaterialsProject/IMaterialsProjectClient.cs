@@ -7,5 +7,6 @@ namespace MaterialsProject
         ICore Core { get; }
         ITasks Tasks { get; }
         IThermo Thermo { get; }
+        IDielectric Dielectric { get; }
     }
 }

@@ -47,5 +47,15 @@
         
         // phase diagram
         internal const string PhaseDiagramIds = "phase_diagram_ids";
+
+        // Dielectric
+        internal const string ETotalMax = "e_total_max";
+        internal const string ETotalMin = "e_total_min";
+        internal const string EIonicMax = "e_ionic_max";
+        internal const string EIonicMin = "e_ionic_min";
+        internal const string EElectronicMax = "e_electronic_max";
+        internal const string EElectronicMin = "e_electronic_min";
+        internal const string NMax = "n_max";
+        internal const string NMin = "n_min";
     }
 }

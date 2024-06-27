@@ -48,12 +48,14 @@ namespace MaterialsProject
         public ICore Core { get; private set; }
         public ITasks Tasks { get; private set; }
         public IThermo Thermo { get; private set; }
+        public IDielectric Dielectric { get; private set; }
 
         private void InitEndpoints()
         {
             Core = new Core(this);
             Tasks = new Tasks(this);
             Thermo = new Thermo(this);
+            Dielectric = new Dielectric(this);
         }
 
         private void SetApiKey(HttpClient client, string apiKey)
