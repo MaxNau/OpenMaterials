@@ -1,12 +1,9 @@
-﻿using MaterialsProject.Endpoints;
+﻿using MaterialsProject.Endpoints.Materials;
 
 namespace MaterialsProject
 {
     public interface IMaterialsProjectClient
     {
-        ICore Core { get; }
-        ITasks Tasks { get; }
-        IThermo Thermo { get; }
-        IDielectric Dielectric { get; }
+        IMaterials Materials { get; }
     }
 }

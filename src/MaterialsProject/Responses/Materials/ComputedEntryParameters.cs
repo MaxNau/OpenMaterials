@@ -1,5 +1,5 @@
 ﻿using MaterialsProject.Responses.Enums;
-using MaterialsProject.Responses.Tasks;
+using MaterialsProject.Responses.Materials.Tasks;
 using System.Collections.Generic;
 
 namespace MaterialsProject.Responses.Materials

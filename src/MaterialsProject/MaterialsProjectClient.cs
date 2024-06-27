@@ -1,5 +1,4 @@
 ﻿using MaterialsProject.Constants;
-using MaterialsProject.Endpoints;
 using ApiClient.Http.Cache;
 using ApiClient.Http;
 using ApiClient.Http.RequestData;
@@ -8,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using MaterialsProject.Endpoints.Materials;
 
 namespace MaterialsProject
 {
@@ -45,17 +45,11 @@ namespace MaterialsProject
             InitEndpoints();
         }
 
-        public ICore Core { get; private set; }
-        public ITasks Tasks { get; private set; }
-        public IThermo Thermo { get; private set; }
-        public IDielectric Dielectric { get; private set; }
+        public IMaterials Materials { get; private set; }
 
         private void InitEndpoints()
         {
-            Core = new Core(this);
-            Tasks = new Tasks(this);
-            Thermo = new Thermo(this);
-            Dielectric = new Dielectric(this);
+            Materials = new Materials(this);
         }
 
         private void SetApiKey(HttpClient client, string apiKey)

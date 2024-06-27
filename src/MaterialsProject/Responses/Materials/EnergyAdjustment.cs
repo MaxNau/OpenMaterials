@@ -1,5 +1,5 @@
 ﻿using MaterialsProject.Responses.Common;
-using MaterialsProject.Responses.Thermo;
+using MaterialsProject.Responses.Materials.Thermo;
 using System.Text.Json.Serialization;
 
 namespace MaterialsProject.Responses.Materials
