@@ -57,5 +57,17 @@
         internal const string EElectronicMin = "e_electronic_min";
         internal const string NMax = "n_max";
         internal const string NMin = "n_min";
+
+        // Magnetism
+        internal const string TotalMagnetizationMax = "total_magnetization_max";
+        internal const string TotalMagnetizationMin = "total_magnetization_min";
+        internal const string TotalMagnetizationNormalizedVolMin = "total_magnetization_normalized_vol_min";
+        internal const string TotalMagnetizationNormalizedVolMax = "total_magnetization_normalized_vol_max";
+        internal const string TotalMagnetizationNormalizedFormulaUnitsMin = "total_magnetization_normalized_formula_units_min";
+        internal const string TotalMagnetizationNormalizedFormulaUnitsMax = "total_magnetization_normalized_formula_units_max";
+        internal const string NumMagneticSitesMax = "num_magnetic_sites_max";
+        internal const string NumMagneticSitesMin = "num_magnetic_sites_min";
+        internal const string NumUniqueMagneticSitesMax = "num_unique_magnetic_sites_max";
+        internal const string NumUniqueMagneticSitesMin = "num_unique_magnetic_sites_min";
     }
 }

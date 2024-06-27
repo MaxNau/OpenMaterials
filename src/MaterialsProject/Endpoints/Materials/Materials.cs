@@ -18,12 +18,15 @@ namespace MaterialsProject.Endpoints.Materials
         public IThermo Thermo { get; private set; }
         public IDielectric Dielectric { get; private set; }
 
+        public IMagnetism Magnetism { get; private set; }
+
         private void InitEndpoints()
         {
             Core = new Core(_restClient);
             Tasks = new Tasks(_restClient);
             Thermo = new Thermo(_restClient);
             Dielectric = new Dielectric(_restClient);
+            Magnetism = new Magnetism(_restClient);
         }
     }
 }

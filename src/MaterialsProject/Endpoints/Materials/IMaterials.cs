@@ -6,5 +6,6 @@
         ITasks Tasks { get; }
         IThermo Thermo { get; }
         IDielectric Dielectric { get; }
+        IMagnetism Magnetism { get; }
     }
 }
