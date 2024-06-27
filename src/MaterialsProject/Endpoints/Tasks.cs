@@ -3,9 +3,10 @@ using MaterialsProject.RequestQueries.Tasks;
 using MaterialsProject.Responses;
 using MaterialsProject.Responses.Tasks;
 using ApiClient.Http;
-using OScience.MaterialsProject.RequestQueries;
+using MaterialsProject.RequestQueries;
 using System;
 using System.Threading.Tasks;
+using MaterialsProject.Endpoints.Task;
 
 namespace MaterialsProject.Endpoints
 {
@@ -15,7 +16,13 @@ namespace MaterialsProject.Endpoints
         public Tasks(IRestClient restClient)
         {
             _restClient = restClient ?? throw new ArgumentNullException(nameof(restClient));
+
+            InitEndpoints(); 
         }
+
+        public IEntries Entries { get; private set; }
+        public IDeprecation Deprecation { get; private set; }
+        public ITrajectory Trajectory { get; private set; }
 
         public async Task<Response<TaskDoc>> GetAsync()
         {
@@ -35,6 +42,13 @@ namespace MaterialsProject.Endpoints
         public async Task<Response<TaskDoc>> GetAsync(TaskDocQuery taskDocQuery, PagingQuery pagingParameters, TaskDocFilter taskDocFilter)
         {
             return await _restClient.GetByQueryAsync<Response<TaskDoc>, TaskDocQuery, PagingQuery, TaskDocFilter>("materials/tasks/", taskDocQuery, pagingParameters, taskDocFilter).ConfigureAwait(false);
+        }
+
+        private void InitEndpoints()
+        {
+            Entries = new Entries(_restClient);
+            Deprecation = new Deprecation(_restClient);
+            Trajectory = new Task.Trajectory(_restClient);
         }
     }
 }

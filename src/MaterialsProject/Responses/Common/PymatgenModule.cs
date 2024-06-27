@@ -9,5 +9,8 @@ namespace MaterialsProject.Responses.Common
 
         [JsonPropertyName("@class")]
         public string Class { get; set; }
+        
+        [JsonPropertyName("@version")]
+        public object Version { get; set; }
     }
 }

@@ -1,6 +1,4 @@
-﻿using ApiClient.Http.RequestData;
-
-namespace OScience.MaterialsProject.RequestQueries.Clauses
+﻿namespace MaterialsProject.RequestQueries.Clauses
 {
     public interface IMinMaxQuery
     {

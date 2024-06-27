@@ -4,13 +4,12 @@ using ApiClient.Http.Cache;
 using ApiClient.Http;
 using ApiClient.Http.RequestData;
 using ApiClient.Http.Serialization;
-using OScience.MaterialsProject.Endpoints;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 
-namespace OScience.MaterialsProject
+namespace MaterialsProject
 {
     public class MaterialsProjectClient : RestClient, IMaterialsProjectClient
     {
@@ -23,15 +22,8 @@ namespace OScience.MaterialsProject
 
             cachePrecompiler.PrecompileCache(typePropertyNamesCache, typePropertiesToStringCallCache);
             SetCache(typePropertiesToStringCallCache, typePropertyNamesCache);
-
-            if (string.IsNullOrEmpty(apiKey) && !client.DefaultRequestHeaders.Contains(MaterialsProjectHeaderNames.ApiKey))
-            {
-                new ArgumentNullException(nameof(apiKey));
-            }
-            else
-            {
-                AddDefaultRequestHeaders(MaterialsProjectHeaderNames.ApiKey, apiKey);
-            }
+            SetApiKey(client, apiKey);
+            SetDefaultRequestHeaders(client);
 
             InitEndpoints();
         }
@@ -47,26 +39,45 @@ namespace OScience.MaterialsProject
             SetCache(
                 precompiledCaches.OfType<IToStringCallCache<IQueryStringParameters>>().FirstOrDefault(),
                 precompiledCaches.OfType<IToStringCallCache<IFieldFilter>>().FirstOrDefault());
-
-            if (string.IsNullOrEmpty(apiKey) && !client.DefaultRequestHeaders.Contains(MaterialsProjectHeaderNames.ApiKey))
-            {
-                new ArgumentNullException(nameof(apiKey));
-            }
-            else
-            {
-                AddDefaultRequestHeaders(MaterialsProjectHeaderNames.ApiKey, apiKey);
-            }
+            SetApiKey(client, apiKey);
+            SetDefaultRequestHeaders(client);
 
             InitEndpoints();
         }
 
         public ICore Core { get; private set; }
         public ITasks Tasks { get; private set; }
+        public IThermo Thermo { get; private set; }
+        public IDielectric Dielectric { get; private set; }
 
         private void InitEndpoints()
         {
             Core = new Core(this);
             Tasks = new Tasks(this);
+            Thermo = new Thermo(this);
+            Dielectric = new Dielectric(this);
+        }
+
+        private void SetApiKey(HttpClient client, string apiKey)
+        {
+            bool apiKeyHeaderExists = client.DefaultRequestHeaders.Contains(MaterialsProjectHeaderNames.ApiKey);
+
+            if (string.IsNullOrEmpty(apiKey))
+            {
+                if (!apiKeyHeaderExists)
+                {
+                    throw new ArgumentNullException(nameof(apiKey), "API key is required and was not provided.");
+                }
+            }
+            else if (!apiKeyHeaderExists)
+            {
+                client.DefaultRequestHeaders.Add(MaterialsProjectHeaderNames.ApiKey, apiKey);
+            }
+        }
+
+        private void SetDefaultRequestHeaders(HttpClient client)
+        {
+            AddDefaultRequestHeaders("User-Agent", "MaterialsProjectClient/1.0.0");
         }
 
         private static HttpClient SetBaseUri(HttpClient client)

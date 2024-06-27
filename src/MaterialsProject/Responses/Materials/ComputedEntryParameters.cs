@@ -10,5 +10,6 @@ namespace MaterialsProject.Responses.Materials
         public bool IsHubbard { get; set; }
         public Dictionary<ChemicalSymbol, float> Hubbards { get; set; }
         public string RunType { get; set; }
+        public string TaskType { get; set; }
     }
 }

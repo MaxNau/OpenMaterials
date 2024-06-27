@@ -73,7 +73,7 @@ namespace ApiClient.Http
 
             var cacheAdapter = new ToStringCallCacheAdapter<FieldFilterParam>(_fieldFilterToStringCallCache);
             var fieldFilterQueryString = fieldFilterQuery.GetFilterQuery(cacheAdapter);
-            if (fieldFilterQuery.IncludeAllFields && fieldFilterQueryString == "_fields=include_all_fields")
+            if (fieldFilterQuery != null && fieldFilterQuery.IncludeAllFields && fieldFilterQueryString == "_fields=include_all_fields")
             {
                 fieldFilterQueryString = "_all_fields=true";
             }

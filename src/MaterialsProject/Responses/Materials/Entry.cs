@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MaterialsProject.Responses.Materials
 {
-    public class ComputedEntry : PymatgenModule
+    public class Entry : PymatgenModule
     {
         /// <summary>
         /// Energy of the entry. Usually the final calculated

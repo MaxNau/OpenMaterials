@@ -1,6 +1,6 @@
 ﻿using MaterialsProject.Constants;
 using ApiClient.Http.RequestData;
-using OScience.MaterialsProject.RequestQueries;
+
 
 namespace MaterialsProject.RequestQueries.Core
 {

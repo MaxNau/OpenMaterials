@@ -1,8 +1,8 @@
 ﻿using MaterialsProject.Constants;
 using ApiClient.Http.RequestData;
-using OScience.MaterialsProject.RequestQueries.Clauses;
+using MaterialsProject.RequestQueries.Clauses;
 
-namespace OScience.MaterialsProject.RequestQueries
+namespace MaterialsProject.RequestQueries
 {
     public sealed class ElementsQuery : IMinMaxQuery, IEqualsQuery, IInQuery
     {
